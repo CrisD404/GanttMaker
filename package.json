@@ -1,0 +1,48 @@
+{
+  "name": "ganttmaker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Diagramas de Gantt como código, con una interfaz totalmente interactiva. 100% en el navegador, instalable y offline.",
+  "license": "MIT",
+  "author": "CrisD404",
+  "homepage": "https://crisd404.github.io/GanttMaker/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrisD404/GanttMaker.git"
+  },
+  "bugs": "https://github.com/CrisD404/GanttMaker/issues",
+  "keywords": ["gantt", "diagram-as-code", "project-planning", "mermaid", "pwa", "offline", "preact", "codemirror"],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json",
+    "test": "vitest run",
+    "readme:images": "node scripts/readme-images.mjs"
+  },
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.20.3",
+    "@codemirror/commands": "^6.11.1",
+    "@codemirror/language": "^6.12.4",
+    "@codemirror/lint": "^6.9.7",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.13",
+    "@lezer/highlight": "^1.2.5",
+    "@preact/signals": "^2.11.3",
+    "codemirror": "^6.0.2",
+    "lz-string": "^1.5.0",
+    "marked": "^18.0.14",
+    "preact": "^10.29.8"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.6",
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3"
+  }
+}

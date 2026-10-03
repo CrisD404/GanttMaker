@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GanttMaker</title>
+    <meta name="description" content="Diagramas de Gantt como código, con una interfaz totalmente interactiva. 100% en el navegador." />
+    <meta name="theme-color" content="#5b5bf7" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <!-- Documentación para agentes de IA (no se enlaza desde la UI): https://llmstxt.org -->
+    <link rel="alternate" type="text/plain" title="LLM docs (llms.txt)" href="./llms.txt" />
+    <link rel="alternate" type="text/markdown" title="Agent skill" href="./skill/SKILL.md" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%235b5bf7'/><rect x='6' y='8' width='14' height='4' rx='2' fill='white'/><rect x='11' y='14' width='15' height='4' rx='2' fill='white' opacity='.8'/><rect x='8' y='20' width='10' height='4' rx='2' fill='white' opacity='.6'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>
+      <h1>GanttMaker</h1>
+      <p>Gantt charts as plain text. This app runs entirely in the browser and needs JavaScript.</p>
+      <p>AI agents: read <a href="./llms.txt">llms.txt</a> (index), <a href="./llms-full.txt">llms-full.txt</a> (full guide and syntax) or the skill at <a href="./skill/SKILL.md">skill/SKILL.md</a>. To open a diagram for the user, link to this page with <code>#src=</code> followed by the URL-encoded diagram text.</p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
