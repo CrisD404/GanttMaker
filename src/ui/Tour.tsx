@@ -97,7 +97,17 @@ export function startTour() {
 export function maybeStartTour() {
   let done: string | null = null;
   try { done = localStorage.getItem(LS_TOUR); } catch { done = 'unknown'; }
-  if (!done) setTimeout(startTour, 900);
+  if (done) return;
+  const go = () => setTimeout(startTour, 900);
+  // Si la pestaña está en segundo plano, esperar a que se vea
+  if (document.visibilityState === 'hidden') {
+    const onVisible = () => {
+      if (document.visibilityState !== 'visible') return;
+      document.removeEventListener('visibilitychange', onVisible);
+      go();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+  } else go();
 }
 
 interface Rect { x: number; y: number; w: number; h: number }
@@ -119,6 +129,8 @@ export function Tour() {
   const [rect, setRect] = useState<Rect | null>(null);
   const [card, setCard] = useState({ top: 0, left: 0 });
   const [leaving, setLeaving] = useState(false);
+  /** Cambia con cada resize: fuerza a reubicar la tarjeta (incluso si no hay elemento destacado). */
+  const [viewport, setViewport] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const skipped = useRef(false);
 
@@ -132,7 +144,10 @@ export function Tour() {
       if (performance.now() - t0 < 650) raf = requestAnimationFrame(loop);
     };
     loop();
-    const onResize = () => setRect(measure(step));
+    const onResize = () => {
+      setRect(measure(step));
+      setViewport((v) => v + 1);
+    };
     window.addEventListener('resize', onResize);
     return () => {
       cancelAnimationFrame(raf);
@@ -168,7 +183,7 @@ export function Tour() {
       top: Math.max(m, Math.min(top, vh - ch - m)),
       left: Math.max(m, Math.min(left, vw - cw - m)),
     });
-  }, [rect, index]);
+  }, [rect, index, viewport]);
 
   const finish = () => {
     markDone();
